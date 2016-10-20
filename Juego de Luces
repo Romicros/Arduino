@@ -1,0 +1,88 @@
+/* NOMBRE: RONALD FLORES M.
+ *  FECHA: 20/10/2016
+ *  DESCRIPCION: El programa consta de 4 juegos de luces:
+ *              1. Se prende y se apaga cada led de derecha a izquierda secuencialmente.
+ *              2. Se prenden todos los led de uno en uno de derecha a izquierda y se apagan uno por uno de izquierda a derecha.
+ *              3. Se prende los dos led del centro y se prenden todos los demas hacia los extremos y luego se apagan hacia el centro secuencialmente.
+ *              4. Se prende cada led en posicion par de derecha a izquierda y se apagan de izquierda a derecha.
+ */
+int leds [10]={4,5,6,7,8,9,10,11,12,13}; //declaracion de vector
+int contador=0;
+int contador_1=0;
+
+void setup() {
+  // put your setup code here, to run once:
+ // configuraciones
+ pinMode(4,OUTPUT); //declarar pin como salida
+ pinMode(5,OUTPUT); //declarar pin como salida
+ pinMode(6,OUTPUT); //declarar pin como salida
+ pinMode(7,OUTPUT); //declarar pin como salida
+ pinMode(8,OUTPUT); //declarar pin como salida
+ pinMode(9,OUTPUT); 
+ pinMode(10,OUTPUT); //declarar pin como salida
+ pinMode(11,OUTPUT); 
+ pinMode(12,OUTPUT); //declarar pin como salida
+ pinMode(13,OUTPUT); 
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+ luces_1();
+ delay(200);
+ luces_2();
+ delay(200);
+ luces_3();
+ delay(200);
+ luces_4();
+ delay(200);
+}
+
+void luces_1(){
+    for(;contador<10;contador++){
+    digitalWrite(leds[contador],HIGH);
+    delay(100);
+    digitalWrite(leds[contador],LOW);
+     delay(100);
+    }
+    contador=0;
+  }
+
+ void luces_2(){
+   for(;contador_1<10;contador_1++){
+      digitalWrite(leds[contador_1],HIGH);
+      delay(100);
+    }
+    for(;contador_1>=0;contador_1--){
+      digitalWrite(leds[contador_1],LOW);
+      delay(100);
+    }
+  }
+
+  void luces_3(){
+    int k=17; // inicializo una variable auxiliar K
+    for(int i=9; i<=13;i++){ //leo de 9 a 13
+      digitalWrite(i, HIGH); // prendo pin actual
+      digitalWrite(k-i, HIGH); // prendo pin de la diferencia 17-9 = 8
+      delay(100); //retardo
+      }
+      for(int i=13; i>=4;i--){ // Al contrario de lo anterior
+        digitalWrite(i, LOW);
+        digitalWrite(k-i, LOW);
+        delay(100);
+        }
+  }
+
+  void luces_4(){
+    for(;contador<13;contador++){
+      if(contador%2){
+        digitalWrite(leds[contador],HIGH);
+        delay(100);
+      }
+    }
+    for(int cont=13;cont>=0;cont--){
+      if(cont%2){
+        digitalWrite(leds[cont],LOW);
+        delay(100);
+      }
+    }
+  }
