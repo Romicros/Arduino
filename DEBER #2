@@ -1,0 +1,98 @@
+/*NOMBRE: RONALD FLORES M.
+ *  FECHA: 27/10/2016
+ *  DESCRIPCION: El programa consta de 2 juegos de luces con ciclos FOR anidados y conrepeticiones aleatorias de cada juego de luces, esto se logra
+ *                gracias al rango que ingreso por medio de "random"
+ *              1. Se prende los dos led del centro y se prenden todos los demas hacia los extremos y luego se apagan hacia el centro secuencialmente.
+ *              4. Se prende cada led en posicion par de derecha a izquierda y se apagan de izquierda a derecha.
+ */
+ //Inicializar variables de pines
+int led_1=4;
+int led_2=5;
+int led_3=6;
+int led_4=7;
+int led_5=8;
+int led_6=9;
+int led_7=10;
+int led_8=11;
+int led_9=12;
+int led_10=13;
+int sw_1=3;
+int sw_2=2;
+int vector_leds [10]={led_1,led_2,led_3,led_4,led_5,led_6,led_7,led_8,led_9,led_10};
+
+//------------------------------
+//Variables de contadores
+int i=0;
+int j=0;
+int lim=0;
+int lim_1=0;
+int cont=0;
+int cont_1=0;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(led_1,OUTPUT);
+  pinMode(led_2,OUTPUT);
+  pinMode(led_3,OUTPUT);
+  pinMode(led_4,OUTPUT);
+  pinMode(led_5,OUTPUT);
+  pinMode(led_6,OUTPUT);
+  pinMode(led_7,OUTPUT);
+  pinMode(led_8,OUTPUT);
+  pinMode(led_9,OUTPUT);
+  pinMode(led_10,OUTPUT);
+    pinMode(sw_1,INPUT);
+  pinMode(sw_2,INPUT);
+    
+}
+///////////////////JUEGO#1////////////////////////////////////////////////
+void loop() {
+  if(digitalRead(sw_1)==HIGH && digitalRead(sw_2)==HIGH){
+    delay(300);
+    lim = random(9);
+    for(;i<=lim;i++){
+      int k=17;
+      int j=9;
+      for(;j<=13;j++){
+        digitalWrite(j,HIGH);
+        digitalWrite(k-j,HIGH);
+        delay(50);
+      }
+      j=0;
+      int l=13;
+      for(;l>=4;l--){
+        digitalWrite(l, LOW);
+        digitalWrite(k-l, LOW);
+        delay(50);        
+      }
+      l=0;                  
+    }lim=0;
+    delay(300);
+    i=0;
+  }
+
+  //////////////JUEGO #2////////////////////////////////
+  else{
+    if(digitalRead(sw_1)==LOW && digitalRead(sw_2)==HIGH){
+      delay(300);
+      lim_1=random(9);
+      for(;i<=lim_1;i++){
+        
+        for(;cont<13;cont++){
+          if(cont%2){
+            digitalWrite(vector_leds[cont],HIGH);
+            delay(50);
+          }
+        }cont=0;
+        int j=13;
+        for(;j>=0;j--){
+          if(j%2){
+            digitalWrite(vector_leds[j],LOW);
+            delay(50);
+          }
+        }j=0;
+      }
+      delay(300);
+    }
+  }
+}
