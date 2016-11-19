@@ -1,0 +1,134 @@
+//Nombre: Ronald Flores M.
+//Descripcion: Mediante la entrada analoga de un potenciometro se varia la velocidad de un motor y esta se visualiza en 
+// los display .
+
+
+
+int A = 13; 
+int B = 12; 
+int C = 11; 
+int D = 10; 
+
+int pote=A5; 
+int motor=9;
+
+int display1=6; 
+int display2=8;
+
+int contador=0;
+int valor_decena = 0;
+int valor_unidad = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+
+  pinMode(A,OUTPUT); 
+  pinMode(B,OUTPUT); 
+  pinMode(C,OUTPUT); 
+  pinMode(D,OUTPUT); 
+  pinMode(pote,INPUT); 
+  pinMode (display1, OUTPUT);
+  pinMode (display2, OUTPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int value = analogRead(pote); 
+  analogWrite(motor,value/10); 
+  //contador++;
+  valor_decena = ((value/10)/10); 
+  digitalWrite(display1,LOW);
+  digitalWrite(display2,HIGH);
+  dis(valor_decena);
+  delay(100);
+      
+  valor_unidad = (value/10)-(valor_decena*10);
+  digitalWrite(display1,HIGH);
+  digitalWrite(display2,LOW);
+  dis(valor_unidad); 
+  delay(100);
+  delay(10);
+  }
+
+void dis(int numero){
+  switch(numero){
+    case 0:
+   //0
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 1:
+  //1
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 2:
+
+  //2
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 3:
+
+  //3
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 4:
+  //4
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 5:
+
+  //5
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 6:
+
+  //6
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 7:
+
+  //7
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 8:
+
+  //8
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+  break;
+  case 9:
+
+  //9
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+  break;
+  }
+}
