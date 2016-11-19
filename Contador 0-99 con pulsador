@@ -1,0 +1,139 @@
+//NOMBRE: RONALD FLORES M.
+//DESCRIPCION: Contador de 0 a 99 mediante el uso de un pulsador.
+
+int A=13; 
+int B=12; 
+int C=11; 
+int D=10; 
+int display1=9; 
+int display2=8; 
+int contador=0;
+ 
+int pulsador_1 = 2;
+int pulsador_2 = 4;
+
+int contu=0;
+int contd=0;
+
+void setup(){
+  pinMode(A,OUTPUT);
+  pinMode(B,OUTPUT);
+  pinMode(C,OUTPUT);
+  pinMode(D,OUTPUT);
+  pinMode(display1,OUTPUT);
+  pinMode(display2,OUTPUT);
+  pinMode(pulsador_1,INPUT);
+  pinMode(pulsador_2,INPUT);
+  }
+
+  void loop(){
+
+    pulsador_1=digitalRead(2);
+    pulsador_2=digitalRead(4);
+
+    if(pulsador_1 == LOW && contador <= 99){
+      contador=contador+1;
+      //contador++;
+      contd=contador/10; 
+      digitalWrite(display1,LOW);
+      digitalWrite(display2,HIGH);
+      dis(contd);
+      delay(100);
+      
+      contu=contador-(contd*10);
+      digitalWrite(display1,HIGH);
+      digitalWrite(display2,LOW);
+      dis(contu); 
+      delay(100);
+      delay(10);
+    }
+    else{
+      contador = 0;
+    }
+    
+    if (pulsador_2 == LOW && contador >= 0){
+      contador = contador - 1;
+    }
+  }
+
+void dis(int numero){
+  switch(numero){
+    case 0:
+   //0
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 1:
+  //1
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 2:
+
+  //2
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 3:
+
+  //3
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  break;
+  case 4:
+  //4
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 5:
+
+  //5
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 6:
+
+  //6
+  digitalWrite(A,LOW);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 7:
+
+  //7
+  digitalWrite(A,HIGH);
+  digitalWrite(B,HIGH);
+  digitalWrite(C,HIGH);
+  digitalWrite(D,LOW);
+  break;
+  case 8:
+
+  //8
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+  break;
+  case 9:
+
+  //9
+  digitalWrite(A,HIGH);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,HIGH);
+  break;
+  }
+}
